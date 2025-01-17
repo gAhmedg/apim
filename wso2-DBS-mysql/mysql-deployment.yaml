@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wso2am-mysql-db-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+      - name: mysql
+        image: mysql:8.0.31  # Replace with a suitable MySQL version
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: "wso2carbon"  # Set your root password here
+        - name: MYSQL_DATABASE
+          value: "wso2carbon"  # Set the default database here
+        - name: MYSQL_USER
+          value: "wso2carbon"  # New MySQL user
+        - name: MYSQL_PASSWORD
+          value: "wso2carbon"  # Set the password here
+        ports:
+        - containerPort: 3306
+        volumeMounts:
+        - name: mysql-storage
+          mountPath: /var/lib/mysql  # Mount the PVC to store data persistently
+      volumes:
+      - name: mysql-storage
+        persistentVolumeClaim:
+          claimName: mysql-pvc  # Reference the PVC created earlier
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: wso2am-mysql-db-service
+spec:
+  selector:
+    app: mysql
+  ports:
+    - port: 3306
+      targetPort: 3306
+  clusterIP: None  # Makes the service headless; useful for StatefulSets but optional for simple deployments
