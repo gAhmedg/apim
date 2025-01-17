@@ -243,10 +243,10 @@ A Helm chart for the deployment of WSO2 API Manager all-in-one distribution.
 | wso2.choreoAnalytics | object | `{"enabled":false,"endpoint":"","onpremKey":""}` | WSO2 Choreo Analytics Parameters If provided, these parameters will be used publish analytics data to Choreo Analytics environment (https://apim.docs.wso2.com/en/latest/observe/api-manager-analytics/configure-analytics/register-for-analytics/). |
 | wso2.choreoAnalytics.endpoint | string | `""` | Choreo Analytics cloud service endpoint |
 | wso2.choreoAnalytics.onpremKey | string | `""` | On-premise key for Choreo Analytics |
-| wso2.deployment.image.digest | string | `""` | Docker image digest |
-| wso2.deployment.image.imagePullPolicy | string | `"Always"` | Refer to the Kubernetes documentation on updating images (https://kubernetes.io/docs/concepts/containers/images/#updating-images) |
-| wso2.deployment.image.registry | string | `""` | Registry containing the image |
-| wso2.deployment.image.repository | string | `""` | Repository name consisting the image |
+| wso2.deployment.image.digest | string | `"sha256:24f78ecb19125353f0d8b4edd14b766e1a30f6241abc6a1bf943549d9932c84a"` | Docker image digest |
+| wso2.deployment.image.imagePullPolicy | string | `"IfNotPresent"` | Refer to the Kubernetes documentation on updating images (https://kubernetes.io/docs/concepts/containers/images/#updating-images) |
+| wso2.deployment.image.registry | string | `"algn48"` | Registry containing the image |
+| wso2.deployment.image.repository | string | `"wso2am-with-jdbc:4.4.0"` | Repository name consisting the image |
 | wso2.deployment.lifecycle.preStopHook.sleepSeconds | int | `10` | Time to wait until the apim is terminated gracefully |
 | wso2.deployment.livenessProbe.failureThreshold | int | `5` | Minimum consecutive successes for the probe to be considered successful after having failed |
 | wso2.deployment.livenessProbe.initialDelaySeconds | int | `60` | Number of seconds after the container has started before liveness probes are initiated |
